@@ -352,9 +352,7 @@ variables:
   natural_ventilation_available: >
     {% if natural_ventilation_enable_val %}
       {% set temp_suitable = (outdoor_temp >= (indoor_temp - natural_ventilation_threshold_val)) and 
-                             (outdoor_temp <= (indoor_temp + natural_ventilation_threshold_val)) and
-                             (outdoor_temp >= comfort_temp_min) and 
-                             (outdoor_temp <= comfort_temp_max) %}
+                             (outdoor_temp <= (indoor_temp + natural_ventilation_threshold_val)) %}
       {% set humidity_suitable = true %}
       {% if outdoor_humidity_sensor_id and outdoor_humidity_sensor_id != "" %}
         {% set humidity_suitable = (outdoor_humidity <= (indoor_humidity + 10)) %}
