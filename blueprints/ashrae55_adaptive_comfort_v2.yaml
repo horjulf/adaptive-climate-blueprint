@@ -85,12 +85,12 @@ blueprint:
     natural_ventilation_threshold:
       name: Natural Ventilation Threshold
       description: Temperature difference threshold for natural ventilation (°C)
-      default: 2.0
+      default: 1.0
       selector:
         number:
-          min: 0.5
+          min: 0.1
           max: 5.0
-          step: 0.5
+          step: 0.1
           unit_of_measurement: "°C"
     
     setback_temperature_offset:
@@ -351,8 +351,8 @@ variables:
   # Enhanced natural ventilation with humidity consideration
   natural_ventilation_available: >
     {% if natural_ventilation_enable_val %}
-      {% set temp_suitable = (outdoor_temp >= (indoor_temp - natural_ventilation_threshold_val)) and 
-                             (outdoor_temp <= (indoor_temp + natural_ventilation_threshold_val)) %}
+      {% set temp_suitable = (adaptive_comfort_temp >= (indoor_temp - natural_ventilation_threshold_val)) and 
+                             (adaptive_comfort_temp <= (indoor_temp + natural_ventilation_threshold_val)) %}
       {{ temp_suitable }}
     {% else %}
       false
